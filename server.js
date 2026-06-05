@@ -26,7 +26,7 @@ app.post('/contact', async (req, res) => {
   });
 
   const mailOptions = {
-    from: `"Sitecraft Digital Contact" <${process.env.EMAIL_USER}>`,
+    from: `"Sitecraft Digital Inc. Contact" <${process.env.EMAIL_USER}>`,
     to: process.env.EMAIL_USER,
     replyTo: email,
     subject: `New Inquiry from ${name} — ${business}`,
@@ -53,5 +53,5 @@ app.post('/contact', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Sitecraft Digital running at http://localhost:${PORT}`);
+  console.log(`Sitecraft Digital Inc. running at http://localhost:${PORT}`);
 });
