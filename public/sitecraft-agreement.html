@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitecraft Digital Inc. — Service Agreement</title>
+<link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Source+Sans+3:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #ccc;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 24px 16px 48px;
+    font-size: 12px;
+    color: #000;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 56px 64px 48px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 36px 24px 36px; }
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 12px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .header p {
+    font-size: 11px;
+    color: #333;
+  }
+
+  /* Fill-in fields row */
+  .fields-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    margin: 14px 0;
+    font-size: 11.5px;
+  }
+
+  .field-line {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+  }
+
+  .field-line label {
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .field-line input,
+  .field-line select {
+    border: none;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11.5px;
+    color: #000;
+    background: transparent;
+    width: 100%;
+    padding: 0 2px;
+  }
+
+  .field-line select { cursor: pointer; appearance: none; -webkit-appearance: none; }
+
+  .field-full {
+    grid-column: 1 / -1;
+  }
+
+  /* Body */
+  .body-text {
+    font-size: 11.5px;
+    line-height: 1.65;
+    margin-top: 10px;
+  }
+
+  .body-text p {
+    margin-bottom: 7px;
+    text-align: justify;
+  }
+
+  .section-title {
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline;
+  }
+
+  .dyn {
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1px;
+  }
+
+  .no-refund {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 14px 0;
+  }
+
+  /* Signatures */
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 500px) { .sig-grid { grid-template-columns: 1fr; } }
+
+  .sig-block { display: flex; flex-direction: column; gap: 8px; }
+
+  .sig-role {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+
+  .sig-canvas-wrap {
+    border: 1px solid #aaa;
+    background: #fafafa;
+    position: relative;
+    height: 70px;
+    overflow: hidden;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 70px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  .sig-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    font-style: italic;
+    font-size: 11px;
+    color: #bbb;
+  }
+
+  .btn-clear {
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #888;
+    background: none;
+    border: 1px solid #ccc;
+    padding: 2px 8px;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .sig-line {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11.5px;
+    color: #000;
+    background: transparent;
+    width: 100%;
+    padding: 2px 0;
+  }
+
+  .sig-line-label {
+    font-size: 10px;
+    color: #555;
+    margin-top: 1px;
+  }
+
+  /* Submit */
+  .submit-zone {
+    text-align: center;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #ccc;
+  }
+
+  .btn-submit {
+    background: #000;
+    color: #fff;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    padding: 10px 36px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-submit:hover { background: #333; }
+
+  .submit-note {
+    font-size: 10px;
+    color: #888;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .success-msg {
+    display: none;
+    background: #f5fbf5;
+    border: 1px solid #4caf50;
+    padding: 10px 16px;
+    color: #2e7d32;
+    font-size: 12px;
+    margin-top: 12px;
+  }
+
+  .success-msg.show { display: block; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; padding: 36px 48px; }
+    .submit-zone { display: none; }
+    .btn-clear { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Sitecraft Digital Inc. — Web Design Service Agreement</h1>
+    <p>This agreement is entered into between Sitecraft Digital Inc. ("Provider") and the Client identified below.</p>
+  </div>
+
+  <!-- Fill-in fields -->
+  <div class="fields-row">
+    <div class="field-line">
+      <label>Client Name:</label>
+      <input type="text" id="clientName" placeholder="Full legal name">
+    </div>
+    <div class="field-line">
+      <label>Business:</label>
+      <input type="text" id="clientBiz" placeholder="Business name">
+    </div>
+
+    <div class="field-line">
+      <label>Start Date:</label>
+      <input type="date" id="startDate">
+    </div>
+    <div class="field-line">
+      <label>Setup Fee:</label>
+      <input type="text" id="setupFee" placeholder="$0.00">
+    </div>
+    <div class="field-line">
+      <label>Monthly Fee:</label>
+      <input type="text" id="monthlyFee" placeholder="$0.00">
+    </div>
+    <div class="field-line">
+      <label>Payment Due:</label>
+      <input type="text" id="dueDate" placeholder="e.g. 1st of each month">
+    </div>
+    <div class="field-line">
+      <label>Est. Launch:</label>
+      <input type="text" id="launchDate" placeholder="e.g. Within 2 weeks">
+    </div>
+
+  </div>
+
+  <!-- Body -->
+  <div class="body-text">
+
+    <p><span class="section-title">1. Services.</span> Provider agrees to design, develop, and maintain a website for <span class="dyn" id="d-client">[Client]</span>. Estimated launch: <span class="dyn" id="d-launch">[Launch Date]</span>. Following initial website approval, the monthly fee includes one aesthetic or photo look update per month and unlimited bug fixes per month.</p>
+
+    <p><span class="section-title">2. Payment.</span> Client agrees to pay a one-time setup fee of <span class="dyn" id="d-setup">[Setup Fee]</span> upon signing, followed by a monthly fee of <span class="dyn" id="d-monthly">[Monthly Fee]</span> due on the <span class="dyn" id="d-due">[Due Date]</span> of each month. Monthly billing will be charged automatically on the due date each month. Payments more than 7 days late may result in service suspension. Provider accepts Zelle, Venmo, or bank transfer.</p>
+
+    <p><span class="section-title">3. No Refunds.</span> All payments are strictly non-refundable, including the setup fee and any monthly fees already processed. Client acknowledges and agrees to this policy by signing below.</p>
+
+    <p><span class="section-title">4. Cancellation.</span> Client may cancel at any time with written notice (email accepted). Cancellation takes effect at end of current billing cycle. No further charges will be made. Provider will deliver all website files within 5 business days of cancellation.</p>
+
+    <p><span class="section-title">5. Client Responsibilities.</span> Client agrees to provide all required content, images, and materials in a timely manner. Provider is not responsible for delays caused by Client. Client warrants all materials provided are owned or properly licensed.</p>
+
+
+
+  </div>
+
+  <hr>
+
+  <!-- Signatures -->
+  <div class="sig-grid">
+    <div class="sig-block">
+      <div class="sig-role">Client Signature</div>
+      <div class="sig-canvas-wrap">
+        <canvas id="clientCanvas"></canvas>
+        <div class="sig-placeholder" id="clientPlaceholder">Sign here</div>
+      </div>
+      <button class="btn-clear" onclick="clearCanvas('clientCanvas','clientPlaceholder')">Clear</button>
+      <div>
+        <input class="sig-line" type="text" id="clientPrintName" placeholder="Print full name">
+        <div class="sig-line-label">Printed Name</div>
+      </div>
+      <div>
+        <input class="sig-line" type="date" id="clientDate">
+        <div class="sig-line-label">Date</div>
+      </div>
+    </div>
+
+    <div class="sig-block">
+      <div class="sig-role">Sitecraft Digital Inc.</div>
+      <div class="sig-canvas-wrap" style="display:flex;align-items:center;justify-content:center;background:#fafafa;">
+        <span style="font-family:'Dancing Script',cursive;font-size:36px;color:#000;padding:8px 16px;">Daniel Mercier</span>
+      </div>
+      <div>
+        <input class="sig-line" type="text" value="Daniel Mercier" readonly style="color:#666;font-style:italic;">
+        <div class="sig-line-label">Printed Name</div>
+      </div>
+      <div>
+        <input class="sig-line" type="date" id="providerDate">
+        <div class="sig-line-label">Date</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-zone">
+    <button class="btn-submit" onclick="submitAgreement()">Submit Signed Agreement</button>
+    <p class="submit-note">Both parties confirm they have read and agree to all terms above.</p>
+    <div class="success-msg" id="successMsg">Agreement submitted. Sitecraft Digital Inc. will be in touch shortly.</div>
+  </div>
+
+</div>
+
+<script>
+  function sync() {
+    const v = id => document.getElementById(id).value;
+    const s = (id, val) => document.getElementById(id).textContent = val;
+    const startVal = v('startDate');
+    const startFmt = startVal
+      ? new Date(startVal+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})
+      : '[Start Date]';
+    const client = v('clientName') || '[Client]';
+    const biz = v('clientBiz');
+    s('d-client', biz ? `${client} / ${biz}` : client);
+    s('d-launch', v('launchDate') || '[Launch Date]');
+    s('d-setup', v('setupFee') || '[Setup Fee]');
+    s('d-monthly', v('monthlyFee') || '[Monthly Fee]');
+    s('d-due', v('dueDate') || '[Due Date]');
+  }
+
+  ['clientName','clientBiz','startDate','setupFee','monthlyFee','dueDate','launchDate']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', sync);
+      el.addEventListener('change', sync);
+    });
+
+  function setupCanvas(id, phId) {
+    const canvas = document.getElementById(id);
+    const ph = document.getElementById(phId);
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = (canvas.offsetWidth || 280) * dpr;
+    canvas.height = 70 * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 1.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    let drawing = false, signed = false;
+    const pos = e => { const r = canvas.getBoundingClientRect(), s = e.touches?e.touches[0]:e; return {x:s.clientX-r.left,y:s.clientY-r.top}; };
+    const start = e => { e.preventDefault(); drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); if(!signed){ph.style.display='none';signed=true;} };
+    const move = e => { if(!drawing)return; e.preventDefault(); const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); };
+    const stop = () => drawing=false;
+    canvas.addEventListener('mousedown',start); canvas.addEventListener('mousemove',move); canvas.addEventListener('mouseup',stop); canvas.addEventListener('mouseleave',stop);
+    canvas.addEventListener('touchstart',start,{passive:false}); canvas.addEventListener('touchmove',move,{passive:false}); canvas.addEventListener('touchend',stop);
+  }
+
+  function clearCanvas(id, phId) {
+    const c = document.getElementById(id);
+    c.getContext('2d').clearRect(0,0,c.width,c.height);
+    document.getElementById(phId).style.display='flex';
+  }
+
+  window.addEventListener('load', () => {
+    setupCanvas('clientCanvas','clientPlaceholder');
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('clientDate').value = today;
+    document.getElementById('providerDate').value = today;
+    document.getElementById('startDate').value = today;
+    sync();
+  });
+
+  function submitAgreement() {
+    const name = document.getElementById('clientPrintName').value.trim();
+    if (!name) { alert('Please have the client print their name.'); return; }
+    const c = document.getElementById('clientCanvas');
+    const b = document.createElement('canvas'); b.width=c.width; b.height=c.height;
+    if (c.toDataURL()===b.toDataURL()) { alert('Please have the client sign before submitting.'); return; }
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent='Submitting…'; btn.disabled=true;
+    setTimeout(()=>{ document.getElementById('successMsg').classList.add('show'); btn.textContent='Submitted ✓'; window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}); },700);
+  }
+</script>
+</body>
+</html>
