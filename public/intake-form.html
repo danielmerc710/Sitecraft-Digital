@@ -939,17 +939,18 @@
     }
 
     try {
-      // Strip file inputs so they never cause errors
       const rawData = new FormData(form);
-      const cleanData = new FormData();
+      const data = {};
       for (const [key, value] of rawData.entries()) {
-        if (typeof value === 'string') cleanData.append(key, value);
+        if (typeof value === 'string') {
+          data[key] = data[key] ? data[key] + ', ' + value : value;
+        }
       }
 
-      const res = await fetch('https://formspree.io/f/xrevbpzk', {
+      const res = await fetch('/intake', {
         method: 'POST',
-        body: cleanData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
       });
 
       if (res.ok) {
