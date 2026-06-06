@@ -6,23 +6,23 @@ if (nav) {
   });
 }
 
-// Mobile menu toggle
+// Mobile menu toggle — uses separate overlay div to avoid iOS fixed nesting bug
 const toggle = document.getElementById('navToggle');
-const links = document.getElementById('navLinks');
-const navEl = document.getElementById('nav');
-if (toggle && links && navEl) {
+const overlay = document.getElementById('mobileOverlay');
+if (toggle && overlay) {
+  let isOpen = false;
   const openMenu = () => {
-    links.classList.add('open');
-    navEl.classList.add('menu-open');
+    isOpen = true;
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   };
   const closeMenu = () => {
-    links.classList.remove('open');
-    navEl.classList.remove('menu-open');
+    isOpen = false;
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
   };
-  toggle.addEventListener('click', () => {
-    links.classList.contains('open') ? closeMenu() : openMenu();
-  });
-  links.querySelectorAll('a').forEach(a => {
+  toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+  overlay.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', closeMenu);
   });
 }
