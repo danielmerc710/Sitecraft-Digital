@@ -670,8 +670,25 @@ img { max-width: 100%; }
   .step-connector { width: 2px; height: 32px; margin-left: 27px; margin-top: 0; }
 }
 @media (max-width: 640px) {
-  .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--dark); flex-direction: column; justify-content: center; align-items: center; gap: 40px; font-size: 1.2rem; z-index: 99; }
-  .nav-links.open { display: flex; }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--dark);
+    z-index: 99;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+    pointer-events: all;
+  }
   .nav-toggle { display: flex; z-index: 101; }
   .hero { padding: 100px 0 60px; }
   .section, .section-alt { padding: 64px 0; }
