@@ -9,23 +9,21 @@ if (nav) {
 // Mobile menu toggle
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
-if (toggle && links) {
+const navEl = document.getElementById('nav');
+if (toggle && links && navEl) {
+  const openMenu = () => {
+    links.classList.add('open');
+    navEl.classList.add('menu-open');
+  };
+  const closeMenu = () => {
+    links.classList.remove('open');
+    navEl.classList.remove('menu-open');
+  };
   toggle.addEventListener('click', () => {
-    const isOpen = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
+    links.classList.contains('open') ? closeMenu() : openMenu();
   });
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-  // Close on background tap
-  document.addEventListener('click', (e) => {
-    if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+    a.addEventListener('click', closeMenu);
   });
 }
 

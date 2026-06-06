@@ -671,23 +671,23 @@ img { max-width: 100%; }
 }
 @media (max-width: 640px) {
   .nav-links {
-    visibility: hidden;
-    opacity: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
     font-size: 1.2rem;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100vh;
+    background: var(--dark);
+  }
+  .nav-links.open { display: flex; }
+  .nav.menu-open {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: var(--dark);
-    z-index: 99;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-  }
-  .nav-links.open {
-    visibility: visible;
-    opacity: 1;
+    overflow: hidden;
   }
   .nav-toggle { display: flex; z-index: 101; }
   .hero { padding: 100px 0 60px; }
